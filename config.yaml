@@ -1,0 +1,28 @@
+service:
+  type: ClusterIP
+
+jupyterhub:
+  proxy:
+    service:
+      type: ClusterIP
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      kubernetes.io/tls-acme: "true"
+      cert-manager.io/issuer: letsencrypt-production
+      https:
+        enabled: true
+        type: nginx
+
+ingress:
+  enabled: true
+  hosts:
+     - <binderhub-URL>
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/issuer: letsencrypt-production
+    https:
+      enabled: true
+      type: nginx
